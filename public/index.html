@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏学祭 2026 | 来場者ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#3B2350;
+    --night:#7B4FA0;
+    --night-2:#6A3E8E;
+    --paper:#FFE9CF;
+    --paper-2:#FFD9AE;
+    --lantern:#FF8C3D;
+    --gold:#FFC93C;
+    --ink-soft:#8A5E3D;
+    --paper-text:#A9754A;
+    --nav-h:64px;
+    --announce-h:0px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Zen Maru Gothic', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    padding-top:calc(var(--nav-h) + var(--announce-h));
+  }
+  h1,h2,h3,.brand{
+    font-family:'Zen Maru Gothic', sans-serif;
+    font-weight:900;
+    margin:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  section{scroll-margin-top:calc(var(--nav-h) + var(--announce-h));}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- 固定ナビ ---------- */
+  #nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    height:var(--nav-h);
+    background:#FFFFFF;
+    z-index:100;
+    border-bottom:2px dashed rgba(123,79,160,0.35);
+  }
+  .nav-inner{
+    height:100%;
+    display:flex;
+    align-items:center;
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 12px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    gap:4px;
+  }
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav-brand{
+    color:var(--night);
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:.04em;
+    padding:0 16px 0 4px;
+    white-space:nowrap;
+    border-right:1px solid rgba(123,79,160,0.2);
+    margin-right:8px;
+  }
+  .nav-link{
+    position:relative;
+    white-space:nowrap;
+    color:#B79BC9;
+    font-size:14px;
+    font-weight:700;
+    padding:10px 14px;
+    flex-shrink:0;
+  }
+  .nav-link::after{
+    content:"";
+    position:absolute;
+    left:14px;right:14px;bottom:6px;
+    height:2px;
+    background:var(--lantern);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .nav-link.active{color:var(--night);}
+  .nav-link.active::after{transform:scaleX(1);}
+
+  /* ---------- アナウンス（常時固定表示のお知らせ帯） ---------- */
+  #announce{
+    position:fixed;
+    top:var(--nav-h);
+    left:0;right:0;
+    z-index:99;
+    background:var(--lantern);
+    border-bottom:1px solid rgba(59,35,80,.15);
+  }
+  .announce-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:10px 16px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .announce-pin{
+    flex-shrink:0;
+    font-size:14px;
+    line-height:1.7;
+  }
+  .announce-text{
+    margin:0;
+    flex:1;
+    font-size:13.5px;
+    line-height:1.7;
+    color:#4A2600;
+    font-weight:700;
+  }
+
+  /* ---------- 区切り（提灯の紐をイメージしたスキャロップ） ---------- */
+  .scallop{
+    height:18px;
+    width:100%;
+    display:block;
+  }
+  .scallop.on-dark{fill:var(--night);}
+  .scallop.on-light{fill:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  #hero{
+    background:var(--paper);
+    color:var(--ink);
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  #hero::before{
+    content:"";
+    position:absolute;
+    top:-60px;right:-60px;
+    width:280px;height:280px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, var(--gold), transparent 70%);
+    opacity:.45;
+  }
+  .hero-inner{position:relative;z-index:1;}
+  .hero-deco{
+    position:absolute;
+    font-size:38px;
+    opacity:.55;
+    z-index:0;
+    user-select:none;
+  }
+  .hero-deco.web{top:6px;left:2%;font-size:44px;}
+  .hero-deco.ghost{bottom:4px;right:6%;font-size:40px;}
+  .hero-deco.bat{top:24px;right:22%;font-size:28px;opacity:.7;}
+  .hero-title{
+    font-size:clamp(36px,7vw,64px);
+    font-weight:900;
+    line-height:1.3;
+    color:var(--ink);
+  }
+  .hero-sub{
+    margin:18px auto 0;
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:30em;
+    line-height:1.9;
+  }
+  .hero-meta{
+    margin:36px auto 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:28px;
+  }
+  .hero-meta div{border-left:3px solid var(--lantern);padding-left:14px;text-align:left;}
+  .hero-meta dt{font-size:12px;color:var(--ink-soft);}
+  .hero-meta dd{margin:2px 0 0;font-size:17px;font-weight:900;color:var(--ink);}
+
+  /* ---------- 共通セクション ---------- */
+  .section{padding:72px 0;}
+  .section.on-night{background:var(--night);color:var(--paper);}
+  .section-head{margin-bottom:36px;}
+  .section-name{
+    font-size:13px;
+    color:var(--lantern);
+    font-weight:700;
+    letter-spacing:.02em;
+  }
+  .on-night .section-name{color:var(--gold);}
+  .section-title{
+    font-size:clamp(26px,4vw,34px);
+    margin-top:6px;
+  }
+  .section-lead{
+    margin-top:14px;
+    color:var(--paper-text);
+    line-height:1.85;
+    max-width:38em;
+  }
+  .on-night .section-lead{color:rgba(247,241,228,.78);}
+
+  /* ---------- あいさつ ---------- */
+  .greeting-card{
+    position:relative;
+    background:#fff;
+    border:1px solid var(--paper-2);
+    border-radius:6px;
+    padding:32px;
+    line-height:1.95;
+    color:var(--ink-soft);
+  }
+  .greeting-sign{margin-top:20px;font-weight:700;color:var(--ink);}
+  .theme-block{position:relative;margin-bottom:32px;}
+  .theme-block-spaced{margin-top:32px;}
+  .theme-heading{
+    font-size:18px;
+    font-weight:900;
+    color:var(--lantern);
+    margin-bottom:14px;
+  }
+  .theme-text{
+    background:#fff;
+    border:1px dashed var(--paper-2);
+    border-radius:6px;
+    padding:28px;
+    line-height:1.9;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  /* ---------- タイムテーブル ---------- */
+  .day-tabs{display:flex;gap:10px;margin-bottom:22px;}
+  .day-tab{
+    appearance:none;
+    background:none;
+    font-family:inherit;
+    cursor:pointer;
+    padding:8px 18px;
+    border-radius:999px;
+    border:1px solid rgba(255,201,60,.5);
+    font-size:14px;
+    font-weight:700;
+    color:rgba(247,241,228,.75);
+    transition:background .2s ease, color .2s ease;
+  }
+  .day-tab.is-current{background:var(--gold);color:var(--night);border-color:var(--gold);}
+  .timetable{width:100%;border-collapse:collapse;table-layout:fixed;}
+  .day-panel[hidden]{display:none;}
+  .timetable-thanks{
+    margin:0 0 18px;
+    padding:14px 18px;
+    background:rgba(255,201,60,.15);
+    border:1px solid rgba(255,201,60,.45);
+    border-radius:4px;
+    color:var(--gold);
+    font-weight:700;
+    font-size:15px;
+  }
+  .timetable th,.timetable td{
+    text-align:center;
+    padding:14px 10px;
+    border-bottom:1px solid rgba(247,241,228,.14);
+    font-size:15px;
+    overflow-wrap:break-word;
+  }
+  .timetable th{color:var(--gold);font-weight:700;}
+  .timetable th.time-col{width:90px;}
+  .timetable thead th{
+    font-size:13px;
+    padding-bottom:12px;
+    border-bottom:2px solid rgba(255,201,60,.4);
+  }
+  .timetable td,
+  .timetable thead th + th{
+    border-left:1px solid rgba(247,241,228,.14);
+  }
+  .timetable td:empty::after{content:"—";color:rgba(247,241,228,.3);}
+
+  /* ---------- マップ ---------- */
+  .map-layout{max-width:640px;}
+  .map-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
+  .map-tab{
+    appearance:none;
+    background:none;
+    font-family:inherit;
+    cursor:pointer;
+    padding:8px 16px;
+    border-radius:999px;
+    border:1px solid rgba(255,201,60,.5);
+    font-size:13px;
+    font-weight:700;
+    color:rgba(247,241,228,.75);
+    transition:background .2s ease, color .2s ease;
+  }
+  .map-tab.is-current{background:var(--gold);color:var(--night);border-color:var(--gold);}
+
+  /* ---------- イベント：日付タブ ---------- */
+  .event-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
+  .event-tab{
+    appearance:none;
+    background:none;
+    font-family:inherit;
+    cursor:pointer;
+    padding:8px 16px;
+    border-radius:999px;
+    border:1px solid rgba(255,201,60,.5);
+    font-size:13px;
+    font-weight:700;
+    color:rgba(247,241,228,.75);
+    transition:background .2s ease, color .2s ease;
+  }
+  .event-tab.is-current{background:var(--gold);color:var(--night);border-color:var(--gold);}
+  .card-grid[hidden]{display:none;}
+  .map-canvas{
+    position:relative;
+    aspect-ratio:4/3;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(74,79,107,.08) 24px),
+      repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(74,79,107,.08) 24px),
+      var(--paper-2);
+    border:1px solid var(--ink-soft);
+    border-radius:4px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper-text);
+    font-size:14px;
+    text-align:center;
+    padding:20px;
+    overflow:hidden;
+  }
+  .map-canvas img{width:100%;height:100%;object-fit:cover;}
+  .map-canvas[hidden]{display:none;}
+  .map-desc{
+    margin:16px 0 0;
+    font-size:14px;
+    line-height:1.85;
+    color:rgba(247,241,228,.78);
+  }
+  .map-desc[hidden]{display:none;}
+
+  /* ---------- グルメ / イベント / 研究発表 共通カード ---------- */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:20px;
+  }
+  .card{
+    background:#fff;
+    border:1px solid var(--paper-2);
+    padding:22px;
+  }
+  .on-night .card{background:var(--night-2);border-color:rgba(247,241,228,.12);}
+  .card-tag{font-size:12px;color:var(--lantern);font-weight:700;}
+  .on-night .card-tag{color:var(--gold);}
+  .card h3{font-size:18px;margin-top:8px;font-family:'Zen Maru Gothic',sans-serif;font-weight:700;}
+  .card-media{
+    aspect-ratio:16/9;
+    margin-top:12px;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(0,0,0,.05) 16px),
+      repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(0,0,0,.05) 16px),
+      var(--paper-2);
+    border:1px dashed var(--ink-soft);
+    border-radius:4px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper-text);
+    font-size:12px;
+    text-align:center;
+    padding:8px;
+  }
+  .on-night .card-media{
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(255,255,255,.05) 16px),
+      repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(255,255,255,.05) 16px),
+      rgba(247,241,228,.06);
+    border-color:rgba(247,241,228,.3);
+    color:rgba(247,241,228,.55);
+  }
+  .card p{font-size:14px;color:var(--paper-text);line-height:1.75;margin-top:8px;}
+  .on-night .card p{color:rgba(247,241,228,.72);}
+  .card-place{
+    margin-top:14px;font-size:13px;color:var(--ink-soft);
+    border-top:1px solid var(--paper-2);padding-top:10px;
+  }
+  .on-night .card-place{color:rgba(247,241,228,.55);border-color:rgba(247,241,228,.12);}
+
+  /* ---------- グルメ／イベント：カードのタップ機能 ---------- */
+  #gourmet .card,
+  #event .card{
+    cursor:pointer;
+    transition:border-color .2s ease, transform .15s ease;
+  }
+  #gourmet .card:hover, #gourmet .card:focus-visible,
+  #event .card:hover, #event .card:focus-visible{
+    border-color:var(--lantern);
+  }
+  #gourmet .card:active,
+  #event .card:active{transform:scale(.98);}
+  .card-more{
+    margin-top:14px;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--lantern);
+  }
+  .on-night .card-more{color:var(--gold);}
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(59,35,80,.72);
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay[hidden]{display:none;}
+  .modal-box{
+    position:relative;
+    background:#fff;
+    border-radius:8px;
+    max-width:420px;
+    width:100%;
+    padding:28px 26px;
+  }
+  .modal-close{
+    position:absolute;
+    top:8px;right:8px;
+    appearance:none;background:none;border:none;
+    font-size:36px;color:var(--ink-soft);
+    cursor:pointer;line-height:1;padding:8px;
+    width:52px;height:52px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .modal-image{
+    aspect-ratio:4/3;
+    margin:0 0 12px;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(74,79,107,.08) 24px),
+      repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(74,79,107,.08) 24px),
+      var(--paper-2);
+    border:1px solid var(--paper-2);
+    border-radius:4px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper-text);
+    font-size:13px;
+  }
+  .modal-video{
+    aspect-ratio:16/9;
+    margin:0 0 18px;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(74,79,107,.08) 16px),
+      repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(74,79,107,.08) 16px),
+      var(--paper-2);
+    border:1px dashed var(--ink-soft);
+    border-radius:4px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper-text);
+    font-size:13px;
+  }
+  .modal-tag{font-size:12px;color:var(--lantern);font-weight:700;}
+  .modal-box h3{font-size:20px;margin-top:8px;font-family:'Zen Maru Gothic',sans-serif;font-weight:700;color:var(--ink);}
+  .modal-place{
+    margin-top:10px;font-size:13px;color:var(--ink-soft);
+    border-bottom:1px solid var(--paper-2);padding-bottom:14px;
+  }
+  .modal-detail{margin-top:14px;font-size:14px;line-height:1.85;color:var(--paper-text);}
+
+  /* ---------- 管理者ログイン・編集モード ---------- */
+  .admin-only{display:none;}
+  body.admin-mode .admin-only{display:block;}
+  body.admin-mode .card-delete{display:flex;}
+  body.admin-mode .edit-pencil{display:flex;}
+
+  .edit-pencil{
+    display:none;
+    position:absolute;
+    top:8px;right:8px;
+    width:30px;height:30px;
+    border-radius:50%;
+    background:var(--gold);
+    color:var(--night);
+    border:none;
+    align-items:center;justify-content:center;
+    font-size:14px;cursor:pointer;z-index:5;
+  }
+  .announce-inner{position:relative;}
+  .announce .edit-pencil{background:#fff;color:var(--night);}
+
+  #adminBar{
+    position:fixed;
+    bottom:0;left:0;right:0;
+    z-index:300;
+    background:var(--ink);
+    color:#fff;
+    font-size:12px;
+    padding:8px 14px;
+    text-align:center;
+  }
+  #adminBar a, #adminBar button{
+    background:none;border:none;color:#FFC93C;font-size:12px;
+    font-weight:700;cursor:pointer;text-decoration:underline;padding:0;font-family:inherit;
+  }
+  body.admin-mode #adminBar{background:#3B2350;}
+  #adminLoginForm{
+    display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:6px;
+  }
+  #adminLoginForm input{
+    font-size:12px;padding:6px 8px;border-radius:4px;border:none;width:150px;
+  }
+  #adminLoginForm button{
+    background:var(--lantern);color:#fff;border-radius:4px;padding:6px 12px;text-decoration:none;
+  }
+
+  .card{position:relative;}
+  .card-delete{
+    display:none;
+    position:absolute;top:8px;right:8px;
+    width:28px;height:28px;border-radius:50%;
+    background:#D9435E;color:#fff;border:none;
+    align-items:center;justify-content:center;
+    font-size:15px;cursor:pointer;z-index:5;
+  }
+  .card-add{
+    display:none;
+    width:100%;margin-top:18px;
+    padding:16px;border-radius:6px;
+    border:2px dashed rgba(255,201,60,.5);
+    background:none;color:var(--gold);
+    font-size:14px;font-weight:700;cursor:pointer;
+  }
+  body.admin-mode .card-add{display:block;}
+  .card-add[hidden]{display:none;}
+
+  .edit-modal-box{
+    position:relative;
+    background:#fff;
+    border-radius:8px;
+    max-width:420px;width:100%;
+    padding:28px 26px;
+    max-height:85vh;overflow-y:auto;
+  }
+  .edit-modal-box label{
+    display:block;font-size:12px;font-weight:700;color:var(--ink-soft);
+    margin:14px 0 6px;
+  }
+  .edit-modal-box input[type="text"],
+  .edit-modal-box textarea{
+    width:100%;padding:10px;border:1px solid var(--paper-2);border-radius:4px;
+    font-family:inherit;font-size:14px;box-sizing:border-box;
+  }
+  .edit-modal-box textarea{min-height:70px;resize:vertical;}
+  .edit-save-btn{
+    margin-top:20px;width:100%;padding:12px;border:none;border-radius:6px;
+    background:var(--lantern);color:#fff;font-weight:700;font-size:14px;cursor:pointer;
+  }
+  .edit-image-preview{
+    width:100%;aspect-ratio:16/9;border-radius:4px;object-fit:cover;
+    margin-top:8px;background:var(--paper-2);
+  }
+
+  /* ---------- 研究発表：学部別リスト ---------- */
+  .research-group{margin-bottom:30px;}
+  .research-group h3{font-size:16px;color:var(--lantern);margin-bottom:12px;display:inline-block;}
+  .research-group li{
+    position:relative;
+    padding:12px 30px 12px 0;border-bottom:1px solid var(--paper-2);
+    display:flex;justify-content:space-between;gap:16px;font-size:14px;color:var(--ink-soft);
+  }
+  .research-group li span:last-child{white-space:nowrap;color:var(--paper-text);}
+  .research-group .card-delete{top:8px;right:0;width:24px;height:24px;font-size:12px;}
+
+  /* ---------- 注意事項 ---------- */
+  .notice-list li{
+    position:relative;
+    display:flex;gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid rgba(247,241,228,.14);
+  }
+  .notice-list .num{color:var(--gold);font-family:'Zen Maru Gothic',serif;font-weight:700;}
+  .notice-list .notice-body-wrap{flex:1;}
+  .notice-list p{margin:0;font-size:14px;line-height:1.8;color:rgba(247,241,228,.8);}
+  .notice-list strong{color:var(--paper);display:block;margin-bottom:4px;font-size:15px;}
+
+  /* ---------- 協賛 ---------- */
+  .sponsor-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:16px;
+  }
+  .sponsor-box{
+    position:relative;
+    aspect-ratio:3/2;
+    background:#fff;
+    border:1px solid var(--paper-2);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper-text);font-size:13px;
+    overflow:hidden;
+  }
+  .sponsor-box img{width:100%;height:100%;object-fit:contain;padding:8px;box-sizing:border-box;}
+  .sponsor-box .card-delete{width:24px;height:24px;font-size:12px;top:4px;right:4px;}
+
+  /* ---------- フッター ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(247,241,228,.6);
+    padding:44px 0 28px;
+    font-size:13px;
+  }
+  .footer-top{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
+    padding-bottom:24px;border-bottom:1px solid rgba(247,241,228,.12);
+    margin-bottom:20px;
+  }
+  .footer-sns a{margin-left:16px;color:rgba(247,241,228,.75);}
+  .footer-sns a:first-child{margin-left:0;}
+
+  @media (max-width:720px){
+    .hero-meta{gap:18px;}
+
+    :root{ --nav-h:118px; }
+    .nav-inner{
+      flex-wrap:wrap;
+      overflow-x:visible;
+    }
+    .nav-brand{
+      flex:0 0 100%;
+      text-align:center;
+      border-right:none;
+      margin-right:0;
+      padding:6px 0 4px;
+    }
+    .nav-link{
+      flex:0 0 25%;
+      box-sizing:border-box;
+      text-align:center;
+      white-space:normal;
+      line-height:1.3;
+      font-size:10.5px;
+      padding:8px 4px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= 固定ナビゲーション ================= -->
+<nav id="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">柏学祭2026</span>
+    <a class="nav-link" href="#timetable" data-target="timetable">タイムテーブル</a>
+    <a class="nav-link" href="#greeting" data-target="greeting">あいさつ</a>
+    <a class="nav-link" href="#map" data-target="map">マップ</a>
+    <a class="nav-link" href="#gourmet" data-target="gourmet">グルメ</a>
+    <a class="nav-link" href="#event" data-target="event">イベント</a>
+    <a class="nav-link" href="#research" data-target="research">研究発表</a>
+    <a class="nav-link" href="#notice" data-target="notice">注意事項</a>
+    <a class="nav-link" href="#sponsor" data-target="sponsor">協賛</a>
+  </div>
+</nav>
+
+<!-- ================= アナウンス（常時固定表示・閉じるボタンなし） =================
+     ・来場者が閉じることはできない仕様です。常にナビの直下に表示され続けます
+     ・お知らせが不要な時期は、この <div id="announce"> ごとコメントアウトしてOK -->
+<div id="announce" class="announce" data-announce-id="2026-001">
+  <div class="announce-inner">
+    <span class="announce-pin" aria-hidden="true">📌</span>
+    <p class="announce-text site-text" data-field="announce">【重要】11/1（日）は荒天が予想されるため、屋外プログラムの時間・内容が変更になる場合があります。最新情報は本ページと公式SNSをご確認ください。</p>
+    <button type="button" class="edit-pencil admin-only" data-edit-field="announce" data-edit-label="アナウンス文">✎</button>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<!-- ここに大学名・学園祭名・キャッチコピーを入れる -->
+<header id="hero">
+  <span class="hero-deco web" aria-hidden="true">🕸️</span>
+  <span class="hero-deco ghost" aria-hidden="true">👻</span>
+  <span class="hero-deco bat" aria-hidden="true">🦇</span>
+  <div class="wrap hero-inner">
+    <h1 class="hero-title">開智国際大学<br>柏学祭 2026</h1>
+    <p class="hero-sub">仮装して遊びに来てね！模擬店、ライブ、研究発表まで、キャンパス全体がハロウィンの舞台になります。</p>
+    <dl class="hero-meta">
+      <div><dt>開催日</dt><dd>2026.10.31 (土) - 11.1 (日)</dd></div>
+      <div><dt>会場</dt><dd>開智国際大学 柏キャンパス</dd></div>
+      <div><dt>入場</dt><dd>無料・事前予約不要</dd></div>
+    </dl>
+  </div>
+</header>
+<svg class="scallop on-dark" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,0 Q2.5,6 5,0 T10,0 T15,0 T20,0 T25,0 T30,0 T35,0 T40,0 T45,0 T50,0 T55,0 T60,0 T65,0 T70,0 T75,0 T80,0 T85,0 T90,0 T95,0 T100,0 V0 H0 Z"/></svg>
+
+<!-- ================= タイムテーブル ================= -->
+<section id="timetable" class="section on-night">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">SCHEDULE</span>
+      <h2 class="section-title">タイムテーブル</h2>
+      <p class="section-lead">両日のステージ・企画の進行時間です。荒天時は変更になる場合があります。</p>
+    </div>
+    <div class="day-tabs" role="tablist">
+      <button type="button" class="day-tab is-current" data-day="day1" role="tab" aria-selected="true">1日目：10/31（土）</button>
+      <button type="button" class="day-tab" data-day="day2" role="tab" aria-selected="false">2日目：11/1（日）</button>
+    </div>
+
+    <div class="day-panel" data-day-panel="day1">
+      <p class="timetable-thanks" id="day1Thanks" hidden>ご来場いただきありがとうございました！</p>
+      <table class="timetable">
+        <thead>
+          <tr><th class="time-col">時刻</th><th>屋外</th><th>屋内</th></tr>
+        </thead>
+        <tbody>
+          <tr><th class="time-col">10:00</th><td>開場・模擬店オープン</td><td></td></tr>
+          <tr><th class="time-col">10:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">11:00</th><td>オープニングステージ</td><td></td></tr>
+          <tr><th class="time-col">11:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">12:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">12:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">13:00</th><td>軽音サークル ライブ</td><td></td></tr>
+          <tr><th class="time-col">13:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">14:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">14:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">15:00</th><td>ダンス部 発表</td><td></td></tr>
+          <tr><th class="time-col">15:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">16:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">16:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">17:30</th><td>模擬店クローズ</td><td></td></tr>
+          <tr><th class="time-col">18:00</th><td>フィナーレ点灯</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="day-panel" data-day-panel="day2" hidden>
+      <table class="timetable">
+        <thead>
+          <tr><th class="time-col">時刻</th><th>屋外</th><th>屋内</th></tr>
+        </thead>
+        <tbody>
+          <tr><th class="time-col">10:00</th><td>開場・模擬店オープン</td><td></td></tr>
+          <tr><th class="time-col">10:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">11:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">11:30</th><td>ダンス部 発表</td><td></td></tr>
+          <tr><th class="time-col">12:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">12:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">13:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">13:30</th><td>お笑いサークル ステージ</td><td></td></tr>
+          <tr><th class="time-col">14:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">14:30</th><td></td><td></td></tr>
+          <tr><th class="time-col">15:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">15:30</th><td>クロージングライブ</td><td></td></tr>
+          <tr><th class="time-col">16:00</th><td></td><td></td></tr>
+          <tr><th class="time-col">16:30</th><td>模擬店クローズ</td><td></td></tr>
+          <tr><th class="time-col">17:00</th><td>閉会式</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<svg class="scallop on-light" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,6 Q2.5,0 5,6 T10,6 T15,6 T20,6 T25,6 T30,6 T35,6 T40,6 T45,6 T50,6 T55,6 T60,6 T65,6 T70,6 T75,6 T80,6 T85,6 T90,6 T95,6 T100,6 V6 H0 Z"/></svg>
+
+<!-- ================= あいさつ ================= -->
+<section id="greeting" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">MESSAGE</span>
+      <h2 class="section-title">実行委員長あいさつ</h2>
+    </div>
+    <div class="theme-block">
+      <h3 class="theme-heading">今年のテーマ</h3>
+      <p class="theme-text site-text" data-field="theme">ここに文章を入力</p>
+      <button type="button" class="edit-pencil admin-only" data-edit-field="theme" data-edit-label="今年のテーマ">✎</button>
+    </div>
+    <div class="greeting-card">
+      <p class="site-text" data-field="greetingMain">本日は開智国際大学 柏学祭にお越しいただき、誠にありがとうございます。今年のテーマは「○○○○」。学生一人ひとりの一年間の準備が、この二日間に詰まっています。ぜひ隅々まで歩き回って、キャンパスの新しい表情を楽しんでいってください。</p>
+      <p class="greeting-sign">学園祭実行委員会 委員長 ○○ ○○</p>
+      <button type="button" class="edit-pencil admin-only" data-edit-field="greetingMain" data-edit-label="実行委員長あいさつ">✎</button>
+    </div>
+    <div class="theme-block theme-block-spaced">
+      <h3 class="theme-heading">学長挨拶</h3>
+      <p class="theme-text site-text" data-field="principalGreeting">ここに文章を入力</p>
+      <button type="button" class="edit-pencil admin-only" data-edit-field="principalGreeting" data-edit-label="学長挨拶">✎</button>
+    </div>
+  </div>
+</section>
+<svg class="scallop on-dark" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,0 Q2.5,6 5,0 T10,0 T15,0 T20,0 T25,0 T30,0 T35,0 T40,0 T45,0 T50,0 T55,0 T60,0 T65,0 T70,0 T75,0 T80,0 T85,0 T90,0 T95,0 T100,0 V0 H0 Z"/></svg>
+
+<!-- ================= マップ ================= -->
+<section id="map" class="section on-night">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">CAMPUS MAP</span>
+      <h2 class="section-title">会場マップ</h2>
+      <p class="section-lead">ここにマップの説明を入力</p>
+    </div>
+    <div class="map-layout">
+      <div class="map-tabs" role="tablist">
+        <button type="button" class="map-tab is-current" data-map="outdoor" role="tab" aria-selected="true">屋外</button>
+        <button type="button" class="map-tab" data-map="b1" role="tab" aria-selected="false">1号館</button>
+        <button type="button" class="map-tab" data-map="b2" role="tab" aria-selected="false">2号館</button>
+        <button type="button" class="map-tab" data-map="b3" role="tab" aria-selected="false">3号館（図書館）</button>
+        <button type="button" class="map-tab" data-map="b4" role="tab" aria-selected="false">4号館</button>
+      </div>
+
+      <div class="map-canvas" data-map-panel="outdoor">
+        <span class="map-canvas-placeholder">ここに「屋外」のマップ画像を配置</span>
+        <button type="button" class="edit-pencil admin-only" data-map-edit="outdoor" data-edit-label="屋外">✎</button>
+      </div>
+      <div class="map-canvas" data-map-panel="b1" hidden>
+        <span class="map-canvas-placeholder">ここに「1号館」のマップ画像を配置</span>
+        <button type="button" class="edit-pencil admin-only" data-map-edit="b1" data-edit-label="1号館">✎</button>
+      </div>
+      <div class="map-canvas" data-map-panel="b2" hidden>
+        <span class="map-canvas-placeholder">ここに「2号館」のマップ画像を配置</span>
+        <button type="button" class="edit-pencil admin-only" data-map-edit="b2" data-edit-label="2号館">✎</button>
+      </div>
+      <div class="map-canvas" data-map-panel="b3" hidden>
+        <span class="map-canvas-placeholder">ここに「3号館（図書館）」のマップ画像を配置</span>
+        <button type="button" class="edit-pencil admin-only" data-map-edit="b3" data-edit-label="3号館（図書館）">✎</button>
+      </div>
+      <div class="map-canvas" data-map-panel="b4" hidden>
+        <span class="map-canvas-placeholder">ここに「4号館」のマップ画像を配置</span>
+        <button type="button" class="edit-pencil admin-only" data-map-edit="b4" data-edit-label="4号館">✎</button>
+      </div>
+
+      <p class="map-desc" data-map-desc="outdoor">ここに「屋外」の説明書きを入力</p>
+      <p class="map-desc" data-map-desc="b1" hidden>ここに「1号館」の説明書きを入力</p>
+      <p class="map-desc" data-map-desc="b2" hidden>ここに「2号館」の説明書きを入力</p>
+      <p class="map-desc" data-map-desc="b3" hidden>ここに「3号館（図書館）」の説明書きを入力</p>
+      <p class="map-desc" data-map-desc="b4" hidden>ここに「4号館」の説明書きを入力</p>
+    </div>
+  </div>
+</section>
+<svg class="scallop on-light" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,6 Q2.5,0 5,6 T10,6 T15,6 T20,6 T25,6 T30,6 T35,6 T40,6 T45,6 T50,6 T55,6 T60,6 T65,6 T70,6 T75,6 T80,6 T85,6 T90,6 T95,6 T100,6 V6 H0 Z"/></svg>
+
+<!-- ================= グルメ ================= -->
+<section id="gourmet" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">FOOD</span>
+      <h2 class="section-title">模擬店・グルメ</h2>
+      <p class="section-lead">サークル・ゼミが出店する模擬店の一覧です。</p>
+    </div>
+    <div class="card-grid" id="gourmetGrid"></div>
+    <button type="button" class="card-add admin-only" id="gourmetAddBtn">＋ 模擬店を追加</button>
+  </div>
+</section>
+<svg class="scallop on-dark" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,0 Q2.5,6 5,0 T10,0 T15,0 T20,0 T25,0 T30,0 T35,0 T40,0 T45,0 T50,0 T55,0 T60,0 T65,0 T70,0 T75,0 T80,0 T85,0 T90,0 T95,0 T100,0 V0 H0 Z"/></svg>
+
+<!-- ================= イベント ================= -->
+<section id="event" class="section on-night">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">EVENT</span>
+      <h2 class="section-title">ステージ・イベント</h2>
+      <p class="section-lead">サークルの発表や来場者参加型の企画を紹介します。</p>
+    </div>
+
+    <div class="event-tabs" role="tablist">
+      <button type="button" class="event-tab is-current" data-event-day="day1" role="tab" aria-selected="true">1日目：10/31（土）</button>
+      <button type="button" class="event-tab" data-event-day="day2" role="tab" aria-selected="false">2日目：11/1（日）</button>
+    </div>
+
+    <div class="card-grid" data-event-panel="day1"></div>
+    <button type="button" class="card-add admin-only" data-event-add="day1">＋ 1日目のイベントを追加</button>
+
+    <div class="card-grid" data-event-panel="day2" hidden></div>
+    <button type="button" class="card-add admin-only" data-event-add="day2" hidden>＋ 2日目のイベントを追加</button>
+  </div>
+</section>
+<svg class="scallop on-light" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,6 Q2.5,0 5,6 T10,6 T15,6 T20,6 T25,6 T30,6 T35,6 T40,6 T45,6 T50,6 T55,6 T60,6 T65,6 T70,6 T75,6 T80,6 T85,6 T90,6 T95,6 T100,6 V6 H0 Z"/></svg>
+
+<!-- ================= 研究発表 ================= -->
+<section id="research" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">RESEARCH</span>
+      <h2 class="section-title">研究発表・学術展示</h2>
+      <p class="section-lead">各学部・研究室によるパネル展示とデモンストレーションです。</p>
+    </div>
+    <div class="research-group">
+      <h3 class="site-text" data-field="researchDept1Name" id="researchDept1Name">国際教養学部</h3>
+      <button type="button" class="edit-pencil admin-only" data-edit-field="researchDept1Name" data-edit-label="学部名（1）" style="position:static;display:inline-flex;margin-left:8px;">✎</button>
+      <ul id="researchList1"></ul>
+      <button type="button" class="card-add admin-only" data-research-add="dept1">＋ 発表項目を追加</button>
+    </div>
+    <div class="research-group">
+      <h3 class="site-text" data-field="researchDept2Name" id="researchDept2Name">教育学部</h3>
+      <button type="button" class="edit-pencil admin-only" data-edit-field="researchDept2Name" data-edit-label="学部名（2）" style="position:static;display:inline-flex;margin-left:8px;">✎</button>
+      <ul id="researchList2"></ul>
+      <button type="button" class="card-add admin-only" data-research-add="dept2">＋ 発表項目を追加</button>
+    </div>
+  </div>
+</section>
+<svg class="scallop on-dark" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,0 Q2.5,6 5,0 T10,0 T15,0 T20,0 T25,0 T30,0 T35,0 T40,0 T45,0 T50,0 T55,0 T60,0 T65,0 T70,0 T75,0 T80,0 T85,0 T90,0 T95,0 T100,0 V0 H0 Z"/></svg>
+
+<!-- ================= 注意事項 ================= -->
+<section id="notice" class="section on-night">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">NOTICE</span>
+      <h2 class="section-title">来場にあたっての注意事項</h2>
+    </div>
+    <ul class="notice-list">
+      <li>
+        <span class="num">01</span>
+        <div class="notice-body-wrap">
+          <strong class="site-text" data-field="notice1Title">ゴミは各自でお持ち帰りください</strong>
+          <p class="site-text" data-field="notice1Body">会場内のゴミ箱は模擬店専用です。分別にご協力ください。</p>
+        </div>
+        <button type="button" class="edit-pencil admin-only" data-edit-notice="1" data-edit-label="注意事項01">✎</button>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div class="notice-body-wrap">
+          <strong class="site-text" data-field="notice2Title">飲酒は禁止です</strong>
+          <p class="site-text" data-field="notice2Body">敷地内・キャンパス周辺での飲酒はご遠慮ください。</p>
+        </div>
+        <button type="button" class="edit-pencil admin-only" data-edit-notice="2" data-edit-label="注意事項02">✎</button>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div class="notice-body-wrap">
+          <strong class="site-text" data-field="notice3Title">荒天時の対応</strong>
+          <p class="site-text" data-field="notice3Body">屋外イベントは中止・時間変更となる場合があります。最新情報はSNSでご確認ください。</p>
+        </div>
+        <button type="button" class="edit-pencil admin-only" data-edit-notice="3" data-edit-label="注意事項03">✎</button>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <div class="notice-body-wrap">
+          <strong class="site-text" data-field="notice4Title">迷子・体調不良の際は</strong>
+          <p class="site-text" data-field="notice4Body">本部テント（正門横）または近くのスタッフまでお声がけください。</p>
+        </div>
+        <button type="button" class="edit-pencil admin-only" data-edit-notice="4" data-edit-label="注意事項04">✎</button>
+      </li>
+    </ul>
+  </div>
+</section>
+<svg class="scallop on-light" viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0,6 Q2.5,0 5,6 T10,6 T15,6 T20,6 T25,6 T30,6 T35,6 T40,6 T45,6 T50,6 T55,6 T60,6 T65,6 T70,6 T75,6 T80,6 T85,6 T90,6 T95,6 T100,6 V6 H0 Z"/></svg>
+
+<!-- ================= 協賛 ================= -->
+<section id="sponsor" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-name">SPONSOR</span>
+      <h2 class="section-title">協賛企業・団体</h2>
+      <p class="section-lead">ご協力いただいている企業・団体の皆さまです（五十音順）。</p>
+    </div>
+    <div class="sponsor-grid" id="sponsorGrid"></div>
+    <button type="button" class="card-add admin-only" id="sponsorAddBtn">＋ 協賛ロゴを追加</button>
+  </div>
+</section>
+
+<!-- ================= フッター ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <span>開智国際大学 柏学祭実行委員会</span>
+      <span class="footer-sns" style="position:relative;">
+        <a href="#" id="snsLinkX" target="_blank" rel="noopener">X</a>
+        <a href="#" id="snsLinkInstagram" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" id="snsLinkYoutube" target="_blank" rel="noopener">YouTube</a>
+        <a href="#" id="snsLinkUniversity" target="_blank" rel="noopener">大学HP</a>
+        <button type="button" class="edit-pencil admin-only" id="snsEditBtn" data-edit-label="SNSリンク" style="position:static;display:inline-flex;margin-left:12px;">✎</button>
+      </span>
+    </div>
+    <div>© 2026 開智国際大学柏学祭実行委員会 広報局</div>
+  </div>
+</footer>
+
+<!-- ================= 管理者ログインバー（常時フッター下部・ログイン中のみ強調表示） ================= -->
+<div id="adminBar">
+  <span id="adminStatusText">来場者の方はここは無視してください</span>
+  <div id="adminLoginForm">
+    <input type="email" id="adminEmail" placeholder="メールアドレス" autocomplete="username">
+    <input type="password" id="adminPassword" placeholder="パスワード" autocomplete="current-password">
+    <button type="button" id="adminLoginBtn">ログイン</button>
+  </div>
+  <button type="button" id="adminLogoutBtn" class="admin-only" style="margin-top:6px;">ログアウト（編集モード終了）</button>
+</div>
+
+<!-- ================= 詳細モーダル（グルメ・イベント共通） ================= -->
+<div id="detailModal" class="modal-overlay" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="modal-close" aria-label="閉じる">×</button>
+    <div class="modal-image" id="modalImage">ここに画像を挿入</div>
+    <div class="modal-video">ここに動画を挿入</div>
+    <span class="modal-tag" id="modalTag"></span>
+    <h3 id="modalTitle"></h3>
+    <p class="modal-place" id="modalPlace"></p>
+    <p class="modal-detail" id="modalDetail"></p>
+  </div>
+</div>
+
+<!-- ================= 編集フォームモーダル（管理者専用） ================= -->
+<div id="editModal" class="modal-overlay" hidden>
+  <div class="edit-modal-box" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="editModalClose" aria-label="閉じる">×</button>
+    <h3 style="margin-top:0;">模擬店の編集</h3>
+
+    <label for="editTag">タグ（例：FOOD／DRINK）</label>
+    <input type="text" id="editTag">
+
+    <label for="editName">名前</label>
+    <input type="text" id="editName">
+
+    <label for="editImageFile">写真</label>
+    <input type="file" id="editImageFile" accept="image/*">
+    <img id="editImagePreview" class="edit-image-preview" hidden>
+
+    <label for="editDescription">簡潔な説明（カードに表示）</label>
+    <textarea id="editDescription"></textarea>
+
+    <label for="editPlace">出店場所・時間</label>
+    <input type="text" id="editPlace">
+
+    <label for="editDetail">詳しい説明（タップした時に表示）</label>
+    <textarea id="editDetail"></textarea>
+
+    <button type="button" class="edit-save-btn" id="editSaveBtn">保存する</button>
+  </div>
+</div>
+
+<!-- ================= 汎用テキスト編集モーダル（管理者専用） ================= -->
+<div id="genericEditModal" class="modal-overlay" hidden>
+  <div class="edit-modal-box" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="genericEditClose" aria-label="閉じる">×</button>
+    <h3 id="genericEditTitle" style="margin-top:0;"></h3>
+    <div id="genericEditFields"></div>
+    <button type="button" class="edit-save-btn" id="genericEditSave">保存する</button>
+  </div>
+</div>
+
+<!-- ================= 協賛ロゴ編集モーダル（管理者専用） ================= -->
+<div id="sponsorEditModal" class="modal-overlay" hidden>
+  <div class="edit-modal-box" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="sponsorEditClose" aria-label="閉じる">×</button>
+    <h3 style="margin-top:0;">協賛ロゴの編集</h3>
+    <label for="sponsorNameInput">企業・団体名</label>
+    <input type="text" id="sponsorNameInput">
+    <label for="sponsorImageInput">ロゴ画像</label>
+    <input type="file" id="sponsorImageInput" accept="image/*">
+    <img id="sponsorImagePreview" class="edit-image-preview" hidden>
+    <button type="button" class="edit-save-btn" id="sponsorEditSave">保存する</button>
+  </div>
+</div>
+
+<!-- ================= マップ編集モーダル（管理者専用） ================= -->
+<div id="mapEditModal" class="modal-overlay" hidden>
+  <div class="edit-modal-box" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="mapEditClose" aria-label="閉じる">×</button>
+    <h3 id="mapEditTitle" style="margin-top:0;"></h3>
+    <label for="mapImageInput">マップ画像</label>
+    <input type="file" id="mapImageInput" accept="image/*">
+    <img id="mapImagePreview" class="edit-image-preview" hidden>
+    <label for="mapDescInput">説明書き</label>
+    <textarea id="mapDescInput"></textarea>
+    <button type="button" class="edit-save-btn" id="mapEditSave">保存する</button>
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.nav-link');
+  const sections = Array.from(links).map(l => document.getElementById(l.dataset.target));
+  const navEl = document.getElementById('nav');
+  const announceEl = document.getElementById('announce');
+
+  // ---------- アナウンス帯の高さ管理（閉じる機能はなし・常時表示） ----------
+  function updateAnnounceHeight() {
+    const h = announceEl ? announceEl.offsetHeight : 0;
+    document.documentElement.style.setProperty('--announce-h', h + 'px');
+  }
+
+  if (announceEl) {
+    updateAnnounceHeight();
+    window.addEventListener('resize', updateAnnounceHeight);
+  }
+
+  function getFixedOffset() {
+    const navHeight = navEl.getBoundingClientRect().height;
+    const announceHeight = announceEl ? announceEl.getBoundingClientRect().height : 0;
+    return navHeight + announceHeight;
+  }
+
+  // ---------- タイムテーブルの日付タブ切り替え ----------
+  const dayTabs = document.querySelectorAll('.day-tab');
+  const dayPanels = document.querySelectorAll('[data-day-panel]');
+
+  function selectDay(day) {
+    dayTabs.forEach(t => {
+      const isMatch = t.dataset.day === day;
+      t.classList.toggle('is-current', isMatch);
+      t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+    });
+    dayPanels.forEach(panel => {
+      panel.hidden = panel.dataset.dayPanel !== day;
+    });
+  }
+
+  dayTabs.forEach(tab => {
+    tab.addEventListener('click', () => selectDay(tab.dataset.day));
+  });
+
+  // ---------- 終了メッセージ・デフォルト選択（日本時間 2026/11/1 0:10 を境に切り替え） ----------
+  const DAY_SWAP_DEADLINE = new Date('2026-11-01T00:10:00+09:00');
+  let deadlineDefaultApplied = false;
+
+  function updateDayOneThanksMessage() {
+    const thanksEl = document.getElementById('day1Thanks');
+    if (!thanksEl) return;
+    thanksEl.hidden = !(new Date() >= DAY_SWAP_DEADLINE);
+  }
+
+  function updateDefaultDaySelection() {
+    // 0:10を過ぎた瞬間に一度だけ「2日目」をデフォルト選択にする。
+    // その後に来場者が手動でタブを切り替えても、この処理が選択を上書きすることはない。
+    if (!deadlineDefaultApplied && new Date() >= DAY_SWAP_DEADLINE) {
+      selectDay('day2');
+      deadlineDefaultApplied = true;
+    }
+  }
+
+  let eventDeadlineDefaultApplied = false;
+
+  function updateEventDefaultDaySelection() {
+    // タイムテーブルと同様、0:10を過ぎた瞬間に一度だけイベントのデフォルト選択タブを「2日目」にする。
+    if (!eventDeadlineDefaultApplied && new Date() >= DAY_SWAP_DEADLINE) {
+      selectEventDay('day2');
+      eventDeadlineDefaultApplied = true;
+    }
+  }
+
+  function updateTimetableSchedule() {
+    updateDayOneThanksMessage();
+    updateDefaultDaySelection();
+    updateEventDefaultDaySelection();
+  }
+
+  updateTimetableSchedule();
+  setInterval(updateTimetableSchedule, 60 * 1000); // ページを開きっぱなしにしていても切り替わるよう定期チェック
+
+  // ---------- グルメ／イベント：カードをタップして詳細モーダルを表示 ----------
+  const detailModal = document.getElementById('detailModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalTag = document.getElementById('modalTag');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalPlace = document.getElementById('modalPlace');
+  const modalDetail = document.getElementById('modalDetail');
+  const modalClose = detailModal ? detailModal.querySelector('.modal-close') : null;
+
+  function openDetailModal(card) {
+    modalTag.textContent = card.querySelector('.card-tag') ? card.querySelector('.card-tag').textContent : '';
+    modalTitle.textContent = card.querySelector('h3') ? card.querySelector('h3').textContent : '';
+    modalPlace.textContent = card.querySelector('.card-place') ? card.querySelector('.card-place').textContent : '';
+    modalDetail.textContent = card.dataset.detail || '';
+    if (card.dataset.imageUrl) {
+      modalImage.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = card.dataset.imageUrl;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      img.style.borderRadius = '4px';
+      modalImage.appendChild(img);
+    } else {
+      modalImage.textContent = 'ここに画像を挿入';
+    }
+    detailModal.hidden = false;
+  }
+
+  function closeDetailModal() {
+    detailModal.hidden = true;
+  }
+
+  function setupCardModalGrid(grid) {
+    if (!grid || !detailModal) return;
+    grid.addEventListener('click', (e) => {
+      if (e.target.closest('.card-delete')) return; // 削除ボタンはここでは処理しない
+      const card = e.target.closest('.card');
+      if (!card) return;
+      if (document.body.classList.contains('admin-mode') && card.dataset.docId && window.openCardEditForm) {
+        window.openCardEditForm(card.dataset.docId, card.dataset.collection || 'gourmet_stalls', {});
+      } else {
+        openDetailModal(card);
+      }
+    });
+    grid.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const card = e.target.closest('.card');
+        if (card) {
+          e.preventDefault();
+          openDetailModal(card);
+        }
+      }
+    });
+  }
+
+  setupCardModalGrid(document.querySelector('#gourmet .card-grid'));
+  document.querySelectorAll('#event .card-grid').forEach(setupCardModalGrid);
+
+  if (detailModal) {
+    modalClose.addEventListener('click', closeDetailModal);
+    detailModal.addEventListener('click', (e) => {
+      if (e.target === detailModal) closeDetailModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !detailModal.hidden) closeDetailModal();
+    });
+  }
+
+  // ---------- イベントの日付タブ切り替え ----------
+  const eventTabs = document.querySelectorAll('.event-tab');
+  const eventPanels = document.querySelectorAll('[data-event-panel]');
+
+  function selectEventDay(day) {
+    eventTabs.forEach(t => {
+      const isMatch = t.dataset.eventDay === day;
+      t.classList.toggle('is-current', isMatch);
+      t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+    });
+    eventPanels.forEach(panel => {
+      panel.hidden = panel.dataset.eventPanel !== day;
+    });
+    document.querySelectorAll('[data-event-add]').forEach(btn => {
+      btn.hidden = btn.dataset.eventAdd !== day;
+    });
+  }
+
+  eventTabs.forEach(tab => {
+    tab.addEventListener('click', () => selectEventDay(tab.dataset.eventDay));
+  });
+
+  // ---------- マップのエリア切り替え ----------
+  const mapTabs = document.querySelectorAll('.map-tab');
+  const mapPanels = document.querySelectorAll('[data-map-panel]');
+  const mapDescs = document.querySelectorAll('[data-map-desc]');
+
+  function selectMap(mapId) {
+    mapTabs.forEach(t => {
+      const isMatch = t.dataset.map === mapId;
+      t.classList.toggle('is-current', isMatch);
+      t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+    });
+    mapPanels.forEach(panel => {
+      panel.hidden = panel.dataset.mapPanel !== mapId;
+    });
+    mapDescs.forEach(desc => {
+      desc.hidden = desc.dataset.mapDesc !== mapId;
+    });
+  }
+
+  mapTabs.forEach(tab => {
+    tab.addEventListener('click', () => selectMap(tab.dataset.map));
+  });
+
+  // タッチ／クリックで該当セクションへスムーズスクロール
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(link.dataset.target);
+      if (!target) return;
+
+      const targetY = target.getBoundingClientRect().top + window.pageYOffset - getFixedOffset();
+
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+      // タップした瞬間にハイライトを切り替え（スクロール完了を待たない）
+      links.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      // スクロール先のURLハッシュも更新（履歴は汚さない）
+      history.replaceState(null, '', `#${link.dataset.target}`);
+    });
+  });
+
+  // スクロールに合わせて現在地を自動ハイライト（ナビを直接触っていないとき用）
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = document.querySelector(`.nav-link[data-target="${entry.target.id}"]`);
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(s => s && observer.observe(s));
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import {
+    getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  import {
+    getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, getDoc, setDoc,
+    onSnapshot, query, orderBy, serverTimestamp, getDocs
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import {
+    getStorage, ref, uploadBytes, getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDxAUM2A-g_A9O3kYx7W-okVrdRv3HaDQk",
+    authDomain: "hakugaku-fes-2026-hp.firebaseapp.com",
+    projectId: "hakugaku-fes-2026-hp",
+    storageBucket: "hakugaku-fes-2026-hp.firebasestorage.app",
+    messagingSenderId: "314306909148",
+    appId: "1:314306909148:web:d30d567737001f87003519"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+  // ---------- 管理者ログイン ----------
+  const adminBar = document.getElementById('adminBar');
+  const adminStatusText = document.getElementById('adminStatusText');
+  const adminLoginForm = document.getElementById('adminLoginForm');
+  const adminEmail = document.getElementById('adminEmail');
+  const adminPassword = document.getElementById('adminPassword');
+  const adminLoginBtn = document.getElementById('adminLoginBtn');
+  const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+
+  adminLoginBtn.addEventListener('click', async () => {
+    try {
+      await signInWithEmailAndPassword(auth, adminEmail.value, adminPassword.value);
+      adminPassword.value = '';
+    } catch (err) {
+      alert('ログインできませんでした。メールアドレスとパスワードを確認してください。');
+    }
+  });
+
+  adminLogoutBtn.addEventListener('click', () => signOut(auth));
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      document.body.classList.add('admin-mode');
+      adminStatusText.textContent = '編集モード中：' + user.email;
+      adminLoginForm.style.display = 'none';
+      seedGourmetIfEmpty();
+      seedResearchIfEmpty();
+      seedEventItemsIfEmpty();
+    } else {
+      document.body.classList.remove('admin-mode');
+      adminStatusText.textContent = '来場者の方はここは無視してください';
+      adminLoginForm.style.display = 'flex';
+    }
+  });
+
+  // ---------- グルメ：Firestore連携 ----------
+  const gourmetGridEl = document.getElementById('gourmetGrid');
+  const gourmetCol = collection(db, 'gourmet_stalls');
+
+  const DEFAULT_STALLS = [
+    { tag: 'FOOD', name: 'から揚げ屋台', description: 'サクサク衣のジューシーから揚げ。1パック 400円。', place: '出店場所：中庭 A-3', detail: 'ここに「から揚げ屋台」の詳しい説明を入力', imageUrl: '' },
+    { tag: 'DRINK', name: '手作りタピオカ', description: '3種のフレーバーから選べる冷たいドリンク。', place: '出店場所：中庭 A-7', detail: 'ここに「手作りタピオカ」の詳しい説明を入力', imageUrl: '' },
+    { tag: 'SWEETS', name: 'クレープ工房', description: '季節のフルーツをたっぷり使った焼きたてクレープ。', place: '出店場所：正門前', detail: 'ここに「クレープ工房」の詳しい説明を入力', imageUrl: '' }
+  ];
+
+  async function seedGourmetIfEmpty() {
+    const snap = await getDocs(gourmetCol);
+    if (!snap.empty) return;
+    for (const stall of DEFAULT_STALLS) {
+      await addDoc(gourmetCol, { ...stall, createdAt: serverTimestamp() });
+    }
+  }
+
+  function renderStallCard(docId, data, collectionName) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.dataset.docId = docId;
+    card.dataset.detail = data.detail || '';
+    card.dataset.imageUrl = data.imageUrl || '';
+    card.dataset.collection = collectionName;
+
+    const mediaHtml = data.imageUrl
+      ? `<div class="card-media" style="padding:0;"><img src="${data.imageUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:4px;"></div>`
+      : `<div class="card-media">ここに画像を挿入</div>`;
+
+    card.innerHTML = `
+      <button type="button" class="card-delete admin-only" aria-label="削除">×</button>
+      <span class="card-tag">${escapeHtml(data.tag || '')}</span>
+      <h3>${escapeHtml(data.name || '')}</h3>
+      ${mediaHtml}
+      <p>${escapeHtml(data.description || '')}</p>
+      <div class="card-place">${escapeHtml(data.place || '')}</div>
+      <div class="card-more">タップして詳細を見る／編集する</div>
+    `;
+
+    card.querySelector('.card-delete').addEventListener('click', async (e) => {
+      e.stopPropagation();
+      if (confirm(`「${data.name}」を削除しますか？この操作は取り消せません。`)) {
+        await deleteDoc(doc(db, collectionName, docId));
+      }
+    });
+
+    return card;
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  onSnapshot(query(gourmetCol, orderBy('createdAt', 'asc')), (snapshot) => {
+    gourmetGridEl.innerHTML = '';
+    snapshot.forEach((docSnap) => {
+      gourmetGridEl.appendChild(renderStallCard(docSnap.id, docSnap.data(), 'gourmet_stalls'));
+    });
+  });
+
+  // ---------- イベント：Firestore連携 ----------
+  const eventItemsCol = collection(db, 'event_items');
+  const eventGridDay1 = document.querySelector('#event .card-grid[data-event-panel="day1"]');
+  const eventGridDay2 = document.querySelector('#event .card-grid[data-event-panel="day2"]');
+
+  const DEFAULT_EVENTS = [
+    { day: 'day1', tag: 'ステージ', name: '軽音サークル ライブ', description: '学内5バンドが出演するライブステージ。', place: '10/31 13:00〜 メインステージ', detail: 'ここに「軽音サークル ライブ」の詳しい説明を入力', imageUrl: '' },
+    { day: 'day1', tag: '参加型', name: '射的・輪投げコーナー', description: '小さなお子様でも楽しめるミニゲーム広場。', place: '10/31 10:00〜17:00 体育館前', detail: 'ここに「射的・輪投げコーナー」の詳しい説明を入力', imageUrl: '' },
+    { day: 'day1', tag: 'コンテスト', name: 'ダンス部 発表', description: '1年間練習してきた成果を披露します。', place: '10/31 15:00〜 メインステージ', detail: 'ここに「ダンス部 発表」の詳しい説明を入力', imageUrl: '' },
+    { day: 'day2', tag: '参加型', name: '射的・輪投げコーナー', description: '小さなお子様でも楽しめるミニゲーム広場。', place: '11/1 10:00〜17:00 体育館前', detail: 'ここに「射的・輪投げコーナー」の詳しい説明を入力', imageUrl: '' }
+  ];
+
+  async function seedEventItemsIfEmpty() {
+    const snap = await getDocs(eventItemsCol);
+    if (!snap.empty) return;
+    for (const item of DEFAULT_EVENTS) {
+      await addDoc(eventItemsCol, { ...item, createdAt: serverTimestamp() });
+    }
+  }
+
+  onSnapshot(query(eventItemsCol, orderBy('createdAt', 'asc')), (snapshot) => {
+    if (eventGridDay1) eventGridDay1.innerHTML = '';
+    if (eventGridDay2) eventGridDay2.innerHTML = '';
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      const target = data.day === 'day2' ? eventGridDay2 : eventGridDay1;
+      if (target) target.appendChild(renderStallCard(docSnap.id, data, 'event_items'));
+    });
+  });
+
+  document.querySelectorAll('[data-event-add]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      window.openCardEditForm(null, 'event_items', { day: btn.dataset.eventAdd });
+    });
+  });
+
+  // ---------- グルメ：編集フォーム ----------
+  const editModal = document.getElementById('editModal');
+  const editModalClose = document.getElementById('editModalClose');
+  const editTag = document.getElementById('editTag');
+  const editName = document.getElementById('editName');
+  const editImageFile = document.getElementById('editImageFile');
+  const editImagePreview = document.getElementById('editImagePreview');
+  const editDescription = document.getElementById('editDescription');
+  const editPlace = document.getElementById('editPlace');
+  const editDetail = document.getElementById('editDetail');
+  const editSaveBtn = document.getElementById('editSaveBtn');
+
+  let currentEditDocId = null;
+  let currentImageUrl = '';
+  let currentEditCollection = 'gourmet_stalls';
+  let currentEditExtra = {};
+
+  window.openCardEditForm = function (docId, collectionName, extra) {
+    currentEditCollection = collectionName || 'gourmet_stalls';
+    currentEditExtra = extra || {};
+    if (docId) {
+      const cardEl = document.querySelector(`[data-doc-id="${docId}"][data-collection="${currentEditCollection}"]`);
+      currentEditDocId = docId;
+      currentImageUrl = cardEl ? cardEl.dataset.imageUrl : '';
+      editTag.value = cardEl ? cardEl.querySelector('.card-tag').textContent : '';
+      editName.value = cardEl ? cardEl.querySelector('h3').textContent : '';
+      editDescription.value = cardEl ? cardEl.querySelector('p').textContent : '';
+      editPlace.value = cardEl ? cardEl.querySelector('.card-place').textContent : '';
+      editDetail.value = cardEl ? cardEl.dataset.detail : '';
+      if (currentImageUrl) {
+        editImagePreview.src = currentImageUrl;
+        editImagePreview.hidden = false;
+      } else {
+        editImagePreview.hidden = true;
+      }
+    } else {
+      currentEditDocId = null;
+      currentImageUrl = '';
+      editTag.value = '';
+      editName.value = '';
+      editDescription.value = '';
+      editPlace.value = '';
+      editDetail.value = '';
+      editImagePreview.hidden = true;
+    }
+    editImageFile.value = '';
+    editModal.hidden = false;
+  };
+
+  // 既存の呼び出し元（グルメカードのタップ）との互換用
+  window.openGourmetEditForm = function (docId) {
+    window.openCardEditForm(docId, 'gourmet_stalls', {});
+  };
+
+  document.getElementById('gourmetAddBtn').addEventListener('click', () => {
+    window.openCardEditForm(null, 'gourmet_stalls', {});
+  });
+
+  editImageFile.addEventListener('change', () => {
+    const file = editImageFile.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      editImagePreview.src = e.target.result;
+      editImagePreview.hidden = false;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function closeEditModal() { editModal.hidden = true; }
+  editModalClose.addEventListener('click', closeEditModal);
+  editModal.addEventListener('click', (e) => { if (e.target === editModal) closeEditModal(); });
+
+  editSaveBtn.addEventListener('click', async () => {
+    editSaveBtn.disabled = true;
+    editSaveBtn.textContent = '保存中…';
+    try {
+      let imageUrl = currentImageUrl;
+      const file = editImageFile.files[0];
+      if (file) {
+        const path = `${currentEditCollection}/${Date.now()}_${file.name}`;
+        const storageRef = ref(storage, path);
+        await uploadBytes(storageRef, file);
+        imageUrl = await getDownloadURL(storageRef);
+      }
+      const data = {
+        tag: editTag.value,
+        name: editName.value,
+        description: editDescription.value,
+        place: editPlace.value,
+        detail: editDetail.value,
+        imageUrl: imageUrl
+      };
+      if (currentEditDocId) {
+        await updateDoc(doc(db, currentEditCollection, currentEditDocId), data);
+      } else {
+        await addDoc(collection(db, currentEditCollection), { ...data, ...currentEditExtra, createdAt: serverTimestamp() });
+      }
+      closeEditModal();
+    } catch (err) {
+      alert('保存に失敗しました。もう一度お試しください。');
+      console.error(err);
+    } finally {
+      editSaveBtn.disabled = false;
+      editSaveBtn.textContent = '保存する';
+    }
+  });
+
+  // ---------- サイト内の文章（今年のテーマ・あいさつ・注意事項・SNSリンクなど）----------
+  const siteTextsRef = doc(db, 'site_texts', 'main');
+
+  onSnapshot(siteTextsRef, (snap) => {
+    const data = snap.exists() ? snap.data() : {};
+    document.querySelectorAll('.site-text[data-field]').forEach((el) => {
+      const key = el.dataset.field;
+      if (data[key] !== undefined) el.textContent = data[key];
+    });
+    if (data.snsX) document.getElementById('snsLinkX').href = data.snsX;
+    if (data.snsInstagram) document.getElementById('snsLinkInstagram').href = data.snsInstagram;
+    if (data.snsYoutube) document.getElementById('snsLinkYoutube').href = data.snsYoutube;
+    if (data.snsUniversity) document.getElementById('snsLinkUniversity').href = data.snsUniversity;
+  });
+
+  // ---------- 汎用テキスト編集モーダル ----------
+  const genericEditModal = document.getElementById('genericEditModal');
+  const genericEditTitle = document.getElementById('genericEditTitle');
+  const genericEditFieldsEl = document.getElementById('genericEditFields');
+  const genericEditClose = document.getElementById('genericEditClose');
+  const genericEditSaveBtn = document.getElementById('genericEditSave');
+  let genericEditOnSave = null;
+  let genericEditRefs = {};
+
+  function openGenericEdit({ title, fields, onSave }) {
+    genericEditTitle.textContent = title;
+    genericEditFieldsEl.innerHTML = '';
+    genericEditRefs = {};
+    fields.forEach((f) => {
+      const label = document.createElement('label');
+      label.textContent = f.label;
+      genericEditFieldsEl.appendChild(label);
+      const input = document.createElement(f.type === 'textarea' ? 'textarea' : 'input');
+      if (f.type !== 'textarea') input.type = 'text';
+      input.value = f.value || '';
+      genericEditFieldsEl.appendChild(input);
+      genericEditRefs[f.key] = input;
+    });
+    genericEditOnSave = onSave;
+    genericEditModal.hidden = false;
+  }
+  function closeGenericEdit() { genericEditModal.hidden = true; }
+  genericEditClose.addEventListener('click', closeGenericEdit);
+  genericEditModal.addEventListener('click', (e) => { if (e.target === genericEditModal) closeGenericEdit(); });
+  genericEditSaveBtn.addEventListener('click', async () => {
+    const values = {};
+    Object.keys(genericEditRefs).forEach((k) => { values[k] = genericEditRefs[k].value; });
+    genericEditSaveBtn.disabled = true;
+    genericEditSaveBtn.textContent = '保存中…';
+    try {
+      if (genericEditOnSave) await genericEditOnSave(values);
+      closeGenericEdit();
+    } catch (err) {
+      alert('保存に失敗しました。もう一度お試しください。');
+      console.error(err);
+    } finally {
+      genericEditSaveBtn.disabled = false;
+      genericEditSaveBtn.textContent = '保存する';
+    }
+  });
+
+  // 単一の文章フィールド（アナウンス・今年のテーマ・あいさつ本文・学長挨拶・学部名）
+  document.querySelectorAll('.edit-pencil[data-edit-field]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.editField;
+      const label = btn.dataset.editLabel || key;
+      const currentEl = document.querySelector(`.site-text[data-field="${key}"]`);
+      openGenericEdit({
+        title: label + 'の編集',
+        fields: [{ key, label, type: 'textarea', value: currentEl ? currentEl.textContent : '' }],
+        onSave: async (values) => { await setDoc(siteTextsRef, { [key]: values[key] }, { merge: true }); }
+      });
+    });
+  });
+
+  // 注意事項（見出し＋本文）
+  document.querySelectorAll('[data-edit-notice]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const n = btn.dataset.editNotice;
+      const titleEl = document.querySelector(`[data-field="notice${n}Title"]`);
+      const bodyEl = document.querySelector(`[data-field="notice${n}Body"]`);
+      openGenericEdit({
+        title: `注意事項${n}の編集`,
+        fields: [
+          { key: `notice${n}Title`, label: '見出し', type: 'text', value: titleEl ? titleEl.textContent : '' },
+          { key: `notice${n}Body`, label: '本文', type: 'textarea', value: bodyEl ? bodyEl.textContent : '' }
+        ],
+        onSave: async (values) => { await setDoc(siteTextsRef, values, { merge: true }); }
+      });
+    });
+  });
+
+  // SNSリンク
+  document.getElementById('snsEditBtn').addEventListener('click', async () => {
+    const snap = await getDoc(siteTextsRef);
+    const data = snap.exists() ? snap.data() : {};
+    openGenericEdit({
+      title: 'SNSリンクの編集',
+      fields: [
+        { key: 'snsX', label: 'X（Twitter）のURL', type: 'text', value: data.snsX || '' },
+        { key: 'snsInstagram', label: 'InstagramのURL', type: 'text', value: data.snsInstagram || '' },
+        { key: 'snsYoutube', label: 'YouTubeのURL', type: 'text', value: data.snsYoutube || '' },
+        { key: 'snsUniversity', label: '大学ホームページのURL', type: 'text', value: data.snsUniversity || '' }
+      ],
+      onSave: async (values) => { await setDoc(siteTextsRef, values, { merge: true }); }
+    });
+  });
+
+  // ---------- 研究発表：Firestore連携 ----------
+  const researchCol = collection(db, 'research_items');
+  const DEFAULT_RESEARCH = [
+    { dept: 'dept1', title: '○○研究室：地域活性化に関するフィールドワーク報告', room: '1号館 201教室' },
+    { dept: 'dept1', title: '○○ゼミ：AIを用いた画像認識の応用', room: '1号館 203教室' },
+    { dept: 'dept2', title: '△△研究室：環境素材のプロダクトデザイン展示', room: '2号館 105教室' }
+  ];
+  async function seedResearchIfEmpty() {
+    const snap = await getDocs(researchCol);
+    if (!snap.empty) return;
+    for (const item of DEFAULT_RESEARCH) {
+      await addDoc(researchCol, { ...item, createdAt: serverTimestamp() });
+    }
+  }
+
+  onSnapshot(query(researchCol, orderBy('createdAt', 'asc')), (snapshot) => {
+    const list1 = document.getElementById('researchList1');
+    const list2 = document.getElementById('researchList2');
+    list1.innerHTML = '';
+    list2.innerHTML = '';
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      const li = document.createElement('li');
+      const span1 = document.createElement('span');
+      span1.textContent = data.title || '';
+      const span2 = document.createElement('span');
+      span2.textContent = data.room || '';
+      const delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'card-delete admin-only';
+      delBtn.setAttribute('aria-label', '削除');
+      delBtn.textContent = '×';
+      delBtn.addEventListener('click', async () => {
+        if (confirm('この発表項目を削除しますか？')) {
+          await deleteDoc(doc(db, 'research_items', docSnap.id));
+        }
+      });
+      li.appendChild(span1);
+      li.appendChild(span2);
+      li.appendChild(delBtn);
+      (data.dept === 'dept2' ? list2 : list1).appendChild(li);
+    });
+  });
+
+  document.querySelectorAll('[data-research-add]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dept = btn.dataset.researchAdd;
+      openGenericEdit({
+        title: '発表項目を追加',
+        fields: [
+          { key: 'title', label: '研究室・ゼミ名と内容', type: 'text', value: '' },
+          { key: 'room', label: '教室', type: 'text', value: '' }
+        ],
+        onSave: async (values) => {
+          await addDoc(researchCol, { dept, title: values.title, room: values.room, createdAt: serverTimestamp() });
+        }
+      });
+    });
+  });
+
+  // ---------- 協賛ロゴ：Firestore連携 ----------
+  const sponsorCol = collection(db, 'sponsor_logos');
+
+  onSnapshot(query(sponsorCol, orderBy('createdAt', 'asc')), (snapshot) => {
+    const grid = document.getElementById('sponsorGrid');
+    grid.innerHTML = '';
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      const box = document.createElement('div');
+      box.className = 'sponsor-box';
+      if (data.imageUrl) {
+        const img = document.createElement('img');
+        img.src = data.imageUrl;
+        img.alt = data.name || '';
+        box.appendChild(img);
+      } else {
+        box.appendChild(document.createTextNode(data.name || 'LOGO'));
+      }
+      const delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'card-delete admin-only';
+      delBtn.setAttribute('aria-label', '削除');
+      delBtn.textContent = '×';
+      delBtn.addEventListener('click', async () => {
+        if (confirm(`「${data.name || 'このロゴ'}」を削除しますか？`)) {
+          await deleteDoc(doc(db, 'sponsor_logos', docSnap.id));
+        }
+      });
+      box.appendChild(delBtn);
+      grid.appendChild(box);
+    });
+  });
+
+  const sponsorEditModal = document.getElementById('sponsorEditModal');
+  const sponsorNameInput = document.getElementById('sponsorNameInput');
+  const sponsorImageInput = document.getElementById('sponsorImageInput');
+  const sponsorImagePreview = document.getElementById('sponsorImagePreview');
+  const sponsorEditClose = document.getElementById('sponsorEditClose');
+  const sponsorEditSaveBtn = document.getElementById('sponsorEditSave');
+
+  document.getElementById('sponsorAddBtn').addEventListener('click', () => {
+    sponsorNameInput.value = '';
+    sponsorImageInput.value = '';
+    sponsorImagePreview.hidden = true;
+    sponsorEditModal.hidden = false;
+  });
+  sponsorImageInput.addEventListener('change', () => {
+    const file = sponsorImageInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => { sponsorImagePreview.src = e.target.result; sponsorImagePreview.hidden = false; };
+    reader.readAsDataURL(file);
+  });
+  function closeSponsorEdit() { sponsorEditModal.hidden = true; }
+  sponsorEditClose.addEventListener('click', closeSponsorEdit);
+  sponsorEditModal.addEventListener('click', (e) => { if (e.target === sponsorEditModal) closeSponsorEdit(); });
+  sponsorEditSaveBtn.addEventListener('click', async () => {
+    sponsorEditSaveBtn.disabled = true;
+    sponsorEditSaveBtn.textContent = '保存中…';
+    try {
+      let imageUrl = '';
+      const file = sponsorImageInput.files[0];
+      if (file) {
+        const path = `sponsors/${Date.now()}_${file.name}`;
+        const sRef = ref(storage, path);
+        await uploadBytes(sRef, file);
+        imageUrl = await getDownloadURL(sRef);
+      }
+      await addDoc(sponsorCol, { name: sponsorNameInput.value, imageUrl, createdAt: serverTimestamp() });
+      closeSponsorEdit();
+    } catch (err) {
+      alert('保存に失敗しました。もう一度お試しください。');
+      console.error(err);
+    } finally {
+      sponsorEditSaveBtn.disabled = false;
+      sponsorEditSaveBtn.textContent = '保存する';
+    }
+  });
+
+  // ---------- マップ画像・説明：Firestore連携 ----------
+  const mapContentRef = doc(db, 'map_content', 'main');
+  const MAP_BUILDING_IDS = ['outdoor', 'b1', 'b2', 'b3', 'b4'];
+
+  onSnapshot(mapContentRef, (snap) => {
+    const data = snap.exists() ? snap.data() : {};
+    MAP_BUILDING_IDS.forEach((id) => {
+      const info = data[id];
+      const panel = document.querySelector(`.map-canvas[data-map-panel="${id}"]`);
+      if (!panel) return;
+      const placeholder = panel.querySelector('.map-canvas-placeholder');
+      if (info && info.imageUrl) {
+        if (placeholder) placeholder.style.display = 'none';
+        let img = panel.querySelector('img');
+        if (!img) {
+          img = document.createElement('img');
+          panel.insertBefore(img, panel.firstChild);
+        }
+        img.src = info.imageUrl;
+      }
+      const descEl = document.querySelector(`.map-desc[data-map-desc="${id}"]`);
+      if (info && info.desc && descEl) descEl.textContent = info.desc;
+    });
+  });
+
+  const mapEditModal = document.getElementById('mapEditModal');
+  const mapEditTitle = document.getElementById('mapEditTitle');
+  const mapImageInput = document.getElementById('mapImageInput');
+  const mapImagePreview = document.getElementById('mapImagePreview');
+  const mapDescInput = document.getElementById('mapDescInput');
+  const mapEditClose = document.getElementById('mapEditClose');
+  const mapEditSaveBtn = document.getElementById('mapEditSave');
+  let currentMapEditId = null;
+  let currentMapImageUrl = '';
+
+  document.querySelectorAll('[data-map-edit]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      currentMapEditId = btn.dataset.mapEdit;
+      mapEditTitle.textContent = `「${btn.dataset.editLabel}」のマップ編集`;
+      const snap = await getDoc(mapContentRef);
+      const data = snap.exists() ? snap.data() : {};
+      const info = data[currentMapEditId] || {};
+      currentMapImageUrl = info.imageUrl || '';
+      const descEl = document.querySelector(`.map-desc[data-map-desc="${currentMapEditId}"]`);
+      mapDescInput.value = info.desc || (descEl ? descEl.textContent : '');
+      if (currentMapImageUrl) {
+        mapImagePreview.src = currentMapImageUrl;
+        mapImagePreview.hidden = false;
+      } else {
+        mapImagePreview.hidden = true;
+      }
+      mapImageInput.value = '';
+      mapEditModal.hidden = false;
+    });
+  });
+  mapImageInput.addEventListener('change', () => {
+    const file = mapImageInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => { mapImagePreview.src = e.target.result; mapImagePreview.hidden = false; };
+    reader.readAsDataURL(file);
+  });
+  function closeMapEdit() { mapEditModal.hidden = true; }
+  mapEditClose.addEventListener('click', closeMapEdit);
+  mapEditModal.addEventListener('click', (e) => { if (e.target === mapEditModal) closeMapEdit(); });
+  mapEditSaveBtn.addEventListener('click', async () => {
+    mapEditSaveBtn.disabled = true;
+    mapEditSaveBtn.textContent = '保存中…';
+    try {
+      let imageUrl = currentMapImageUrl;
+      const file = mapImageInput.files[0];
+      if (file) {
+        const path = `map/${currentMapEditId}/${Date.now()}_${file.name}`;
+        const mRef = ref(storage, path);
+        await uploadBytes(mRef, file);
+        imageUrl = await getDownloadURL(mRef);
+      }
+      await setDoc(mapContentRef, { [currentMapEditId]: { imageUrl, desc: mapDescInput.value } }, { merge: true });
+      closeMapEdit();
+    } catch (err) {
+      alert('保存に失敗しました。もう一度お試しください。');
+      console.error(err);
+    } finally {
+      mapEditSaveBtn.disabled = false;
+      mapEditSaveBtn.textContent = '保存する';
+    }
+  });
+</script>
+
+</body>
+</html>
